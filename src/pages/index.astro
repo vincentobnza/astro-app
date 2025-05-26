@@ -1,10 +1,14 @@
 ---
 import '../styles/global.css';
 // Component Imports
-import Button from '../components/Button.astro';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/basics/astro-components/
+import { Button } from '@/components/ui/button';
+import Counter from '@/components/Counter';
+import {Modal} from '@/components//Modal';
+
+
 ---
 
 <html lang="en">
@@ -15,11 +19,18 @@ import Button from '../components/Button.astro';
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro + TailwindCSS</title>
 	</head>
-
 	<body>
 		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
+			<Modal client:load/>
 		</div>
 	</body>
+<script>
+	import confetti from 'canvas-confetti';
+	const btn = document.getElementById('btn');
+	function handleClick() {
+		confetti();
+	}
+	btn?.addEventListener('click', handleClick);
+</script>
+
 </html>
