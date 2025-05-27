@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 const { content } = Astro.props;
-import {Navbar} from '@/components/Navbar';
 ---
 
 <html lang="en">
@@ -11,8 +10,7 @@ import {Navbar} from '@/components/Navbar';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{content.title}</title>
 	</head>
-	<body>
-		<Navbar />
+	<body class="w-full max-w-screen-lg mx-auto p-5 space-y-8">
 		<slot />
 	</body>
 </html>

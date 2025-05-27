@@ -1,13 +1,24 @@
 ---
 import '../styles/global.css';
-// Component Imports
+import {Package} from 'lucide-react'
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
-import { Button } from '@/components/ui/button';
-import Counter from '@/components/Counter';
-import {Modal} from '@/components//Modal';
-
+const list = [
+	{
+		name: 'VS Code Extensions',
+		url: "/vscode-extensions",
+		requiredPass: true
+	},
+	{
+		name: "React Libraries",
+		url: "/react-libraries",
+		requiredPass: false
+	},
+	{
+		name: "UI Libraries",
+		url: "/ui-libraries",
+		requiredPass: false
+	}
+]
 
 ---
 
@@ -17,22 +28,40 @@ import {Modal} from '@/components//Modal';
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 		<title>Astro + TailwindCSS</title>
 	</head>
 	<body>
-		<div class="grid place-items-center h-screen content-center bg-zinc-900 text-zinc-200">
-			<h1 class="text-xl font-bold mb-20 text-orange-400">HEY THIS IS A SAMPLE ASTRO APP WEBSITE</h1>
-			<Modal client:load/>
-	
+		<div class="w-full min-h-screen flex flex-col items-center  bg-zinc-900 text-zinc-200">
+			<div class="relative top-0 left-0 w-full h-90">
+				<img src="https://i.pinimg.com/1200x/9d/8f/9e/9d8f9e665cdc0337f1472ef7ab73a317.jpg" alt="vault" class="w-full h-full object-cover opacity-40">
+		<div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent grid place-items-center">
+			<div class="flex flex-col gap-4 text-center">
+				<h1 class="bg-gradient-to-b from-amber-100 to-amber-700 bg-clip-text text-transparent text-5xl font-bold">
+					Welcome to Vincent's Vault
+				</h1>
+				<p class="text-lg opacity-80">
+					This is a collection of useful resources and tools that I frequently use in my development journey.
+				</p>
+			</div>
+		</div>
+		</div>
+		
+
+			<div class="w-full max-w-screen-lg mx-auto p-5 grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+				{
+					list.map((item) => (
+						<a href={item.url}
+							class="bg-zinc-800/20 hover:bg-zinc-800 border border-zinc-700 transition-colors p-5 rounded-lg flex flex-col gap-3 items-start justify-start "
+						>
+							<Package size={30}/>
+							<span class="text-xl font-bold">{item.name}</span>
+						</a>
+					))
+				}
+			</div>
 		</div>
 	</body>
-<script>
-	import confetti from 'canvas-confetti';
-	const btn = document.getElementById('btn');
-	function handleClick() {
-		confetti();
-	}
-	btn?.addEventListener('click', handleClick);
-</script>
-
 </html>
